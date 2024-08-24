@@ -17,6 +17,11 @@ TOKEN = os.getenv('GEKIYABAHIMITSUTOKEN')
 bot = discord.Bot()
 
 
+######## Change to the playlist you wanna use ! ########
+default_playlist_id = 'PL3IFHunJwdt_5ux6D3T7UJqJvRIRFGjgP'
+########################################################
+
+
 @bot.command(name="ping")
 async def ping(ctx: discord.ApplicationContext) -> None:
     latency = round(bot.latency*1000, 2)
@@ -28,8 +33,11 @@ async def ping(ctx: discord.ApplicationContext) -> None:
     name="asmr",
     description="Get a random asmr video from Ika's playlist x)"
 )
-async def asmr(ctx: discord.ApplicationContext) -> None:
-    dico = get_vid_id()
+async def asmr(
+    ctx: discord.ApplicationContext,
+    playlist_id: str = default_playlist_id
+) -> None:
+    dico = get_vid_id(playlist_id)
     if not dico:
         await ctx.respond('No ASMR <:8_:1005710232246300772>')
     video_id = dico['video_id']
@@ -44,8 +52,11 @@ async def asmr(ctx: discord.ApplicationContext) -> None:
     name="daily",
     description="Daily ASMR"
 )
-async def daily(ctx: discord.ApplicationContext) -> None:
-    dico = get_daily()
+async def daily(
+    ctx: discord.ApplicationContext,
+    playlist_id: str = default_playlist_id
+) -> None:
+    dico = get_daily(playlist_id)
     if not dico:
         await ctx.respond('No ASMR for today <:8_:1005710232246300772>')
     await ctx.respond(

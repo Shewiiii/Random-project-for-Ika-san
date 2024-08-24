@@ -5,7 +5,7 @@ from modules.youtube_ import get_vid_id
 
 
 def new_daily(
-    playlist_id: str = 'PL3IFHunJwdt_5ux6D3T7UJqJvRIRFGjgP',
+    playlist_id: str,
     filename: str = 'idk'
 ) -> dict | None:
     dico = get_vid_id(playlist_id)
@@ -22,6 +22,7 @@ def new_daily(
 
 
 def get_daily(
+    playlist_id: str,
     filename: str = 'idk'
 ) -> dict | None:
     with open(f'{filename}.json', 'r') as file:
@@ -30,6 +31,6 @@ def get_daily(
     saved_date = data['date']
     today = datetime.now().strftime("%Y-%m-%d")
     if saved_date != today:
-        data['dico'] = new_daily()
+        data['dico'] = new_daily(playlist_id)
 
     return data['dico']
