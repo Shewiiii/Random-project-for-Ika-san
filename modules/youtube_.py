@@ -9,7 +9,9 @@ API_KEY = os.getenv('GOOGLEAPIKEY')
 youtube = build('youtube', 'v3', developerKey=API_KEY)
 
 
-def get_vid_id(playlist_id: str) -> dict | None:
+def get_vid_id(
+    playlist_id: str = 'PL3IFHunJwdt_5ux6D3T7UJqJvRIRFGjgP'
+) -> dict | None:
     '''Get the id of a vid in a given playlist
     '''
     # items, a list with video infos, like:

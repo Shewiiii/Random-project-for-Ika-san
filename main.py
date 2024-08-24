@@ -18,7 +18,7 @@ bot = discord.Bot()
 
 
 @bot.command(name="ping")
-async def ping(ctx) -> None:
+async def ping(ctx: discord.ApplicationContext) -> None:
     latency = round(bot.latency*1000, 2)
     logging.info(f'Pinged latency: {latency}')
     await ctx.respond(f'あわあわあわわわ ! {latency}ms')
